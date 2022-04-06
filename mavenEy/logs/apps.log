@@ -1,0 +1,15 @@
+2022-03-02 16:03:16,443 DEBUG basic.Log4JDemo [main] This is Debug
+2022-03-02 16:03:16,445 INFO basic.Log4JDemo [main] This is info
+2022-03-02 16:03:16,445 WARN basic.Log4JDemo [main] This is warn
+2022-03-02 16:03:16,445 ERROR basic.Log4JDemo [main] This is error
+2022-03-02 16:03:16,446 FATAL basic.Log4JDemo [main] This is fatal
+2022-03-02 16:04:23,475 DEBUG basic.Log4JDemo [main] This is Debug
+2022-03-02 16:04:23,477 INFO basic.Log4JDemo [main] This is info
+2022-03-02 16:04:23,477 WARN basic.Log4JDemo [main] This is warn
+2022-03-02 16:04:23,478 ERROR basic.Log4JDemo [main] This is error
+2022-03-02 16:04:23,478 FATAL basic.Log4JDemo [main] This is fatal
+2022-03-02 16:04:27,556 DEBUG basic.Log4JDemo [main] This is Debug
+2022-03-02 16:04:27,561 INFO basic.Log4JDemo [main] This is info
+2022-03-02 16:04:27,561 WARN basic.Log4JDemo [main] This is warn
+2022-03-02 16:04:27,561 ERROR basic.Log4JDemo [main] This is error
+2022-03-02 16:04:27,561 FATAL basic.Log4JDemo [main] This is fatal

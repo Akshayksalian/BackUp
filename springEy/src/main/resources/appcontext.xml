@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!-- 	<bean id="ccPaymentBean" class="payments.CCPayment" primary="true"></bean>
+	<bean id="cashPaymnetBean" class="payments.CashPayment"></bean> -->
+	
+<!-- 
+     Using Constructor 
+	<bean id="payBean" class="payments.PayServiceImpl">
+		<constructor-arg ref="ccPaymentBean"></constructor-arg>
+		<constructor-arg value="345.67"></constructor-arg>
+	</bean> -->
+
+<!-- 	Using autowire(Constructor)
+	<bean id="payBean" class="payments.PayServiceImpl" autowire="constructor">
+		<constructor-arg index="1" value="345.67"></constructor-arg>
+	</bean> -->
+	
+	<!-- Using Setter and Getter -->
+	<!--  
+	<bean id="payBean1" class="payments.PayServiceImpl1" init-method="setup" destroy-method="destroy">
+		<property name = "payment" ref="ccPaymentBean"></property>
+		<property name = "amount" value="25.05"></property>
+	</bean> 
+	-->
+	
+	
+<!-- AutoWiring (byName) ( helps to reduce one line where we dont specify the payment field by our self)
+	 Same as above but using autoWiring where it search for the bean which is has a name or an id equal to field name in that class. 
+	<bean id="payment" class="payments.CCPayment"></bean>
+	<bean id="payBean1" class="payments.PayServiceImpl1" init-method="setup" destroy-method="destroy" autowire="byName">
+		<property name = "amount" value="147.25"></property>
+	</bean> -->
+	
+<!--  AutoWiring (byType)
+	if it has more than 1 with the same type then we should specify using key word primary 
+	if want to exclude some bean than use autowire-candidate="false" 
+	<bean id="payment" class="payments.CCPayment" primary="true" ></bean>
+	<bean id="payBean1" class="payments.PayServiceImpl1" init-method="setup" destroy-method="destroy" autowire="byType">
+		<property name = "amount" value="127.25"></property>
+	</bean>  --> 
+	
+	<!-- Wiring 
+	list,set,and custom class list -->
+	
+	<bean id="orderBean" class="wiring.Order">
+	<property name="id" value="1" />
+	<property name="itemList">
+		<list>
+			<value>Laptop</value>
+			<value>Ram</value>
+			<value>Drive</value>
+			<value>Drive</value>
+		</list>
+	</property>
+	<property name="items">
+		<list>
+			<bean class="wiring.Item">
+			<property name="name" value="Ram"></property>
+			<property name="price" value="685.56"></property>
+			</bean>
+			<bean class="wiring.Item">
+			<property name="name" value="Cpu"></property>
+			<property name="price" value="435.65"></property>
+			</bean>
+		</list>
+	</property>
+	<property name="itemSet">
+		<set>
+			<value>Laptop</value>
+			<value>Laptop</value>
+			<value>Cpu</value>
+			<value>Ram</value>
+		</set>
+	</property>
+	</bean>
+	
+	<!-- wiring map,properties -->
+	
+	<!-- Seperate bean created and refered to the map later using id -->
+	<bean id="itemBean" class="wiring.Item">
+		<property name="name" value="Laptop"></property>
+		<property name="price" value="513.25"></property>
+	</bean>
+	
+	<bean id="orderBean1" class="wiring.Order1">
+		<property name="id" value="1"></property>
+		<property name="itemMap">
+		 	<map>
+		 		<!-- refering to the bean which is already created using value-ref -->
+		 		<entry key="1" value-ref="itemBean"></entry>
+		 		<entry key="2">
+		 			<bean class="wiring.Item">
+		 				<property name="name" value="Ram"></property>
+		 				<property name="price" value="357.67"></property>
+		 			</bean>
+		 		</entry>
+		 	</map>
+		 </property>
+	</bean>
+	 
+	 <!-- using anotations -->
+	<context:component-scan base-package="payments"></context:component-scan> 
+
+</beans>
